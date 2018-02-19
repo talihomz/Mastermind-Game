@@ -1,0 +1,76 @@
+
+BOARD
+=================================================================
+
++---+---+---+---+---+---+
+| R | G | P | W | O | Y |  WIN!  [ colors : 6, positions : 6 ]s
++---+---+---+---+---+---+
+
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  12    [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  11    [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  10    [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  9     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  8     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  7     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  6     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  5     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  4     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  3     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  2     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+|   |   |   |   |   |   |  1     [ colors : 0, positions : 0 ]
++---+---+---+---+---+---+
+
+HOME SCREEN
+=================================================================
+
+===========================================
+   MASTERMIND : By Sava & Kevin
+===========================================
+Welcome to Mastermind!
+You shall not pass on the first try 😈
+
+1. Break the code
+2. Create the unbreakable code
+3. Take the red pill (Quit)
+
+So, what will it be?
+(Enter an option 1,2 or 3):
+
+
+GAME SCREEN (OPTION #1)
+=================================================================
+
+Instructions
+
+These are the available colors:
+
+R - red
+G - green
+B - blue
+O - orange
+W - white
+Y - yellow
+P - pink
+C - cyan
+
+ What is the code?
+
+ Guess #1 (e.g `R G B W C P`):
+
+GAME SCREEN (OPTION #2)
+=================================================================
+
+ Enter your unbreakable code:
+ Code( e.g. `R G B W C P`):
