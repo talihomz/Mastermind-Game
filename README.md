@@ -1,54 +1,39 @@
-# Mastermind-Game
-Ruby implementation of the mastermind game
+# Mastermind Game
+This is an implementation of the Mastermind game in Ruby, as part of the final OOP project in TheOdinProject Intermediate course.
 
-// layout structure for this
-1. intro
-- get literature on the game
+## Run the GAME
 
-2. how to play
-- starting the Game
+1. Make sure you have Ruby installed on your machine.
+2. Check `ruby --version` for version 1.9 and above.
+3. In the game folder, run the game with `ruby index.rb`
 
- Screen #1
- ===========================================
-    MASTERMIND : By Sava & Kevin
- ===========================================
- Welcome to Mastermind!
- You shall not pass on the first try 😈
+## Home Screen Menu
+If all the steps above are completed, the home screen should be displayed as follows:
 
- 1. Break the code
- 2. Create the unbreakable code
- 3. Take the red pill (Quit)
+![HomeScreen](./screenshots/homescreen.png)
 
- So, what will it be?
- (Enter an option 1,2 or 3):
+Select any of the three options to proceed.
 
- Screen #2 (When 1 is selected)
+## Guesser Mode
 
- Available Colors:
- R - red
- G - green
- B - blue
- O - orange
- W - white
- Y - yellow
- P - pink
- C - cyan
+In order to play against the computer, select option 1.
 
-  - (Input) Guess #1 (e.g `R G B W C P`):
-  - (Error) Invalid code specified. Try again:
-  - (Win)   Congratulations! Welcome to the Matrix! => Go back to home page? (Display home page options without repeating the header)
+This will display the instructions of how to interact with the game.
 
-  1. Break the code
-  2. Create the unbreakable code
-  3. Take the red pill (Quit)
+![Guesser](./screenshots/instructions.png)
 
-  Screen #3 (When 2 is selected)
-  Enter your unbreakable code:
-  - (Input) Code( e.g. `R G B W C P`): R G B W C P
-  - (Error) Invalid code specified. Try again:
+After that, a board is shown, with the current state of the game and a prompt to get input from the terminal.
 
+![Board](./screenshots/board.png)
+
+## AI Mode
+
+AI mode allows a player to set a code, and challenge the computer to break it.
+
+![AI](./screenshots/code.png)
 
 ## Useful Links
+- [The Odin Project](https://www.theodinproject.com/courses/ruby-programming/lessons/oop)
 - [Wikipedia description on the game](http://en.wikipedia.org/wiki/Mastermind_(board_game)
 - [Console color implementation](https://stackoverflow.com/questions/1489183/colorized-ruby-output)
 - [Mastermind Game on the Browser](http://www.webgamesonline.com/mastermind/index.php)
