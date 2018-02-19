@@ -34,7 +34,7 @@ AI mode allows a player to set a code, and challenge the computer to break it.
 
 ## Useful Links
 - [The Odin Project](https://www.theodinproject.com/courses/ruby-programming/lessons/oop)
-- [Wikipedia description on the game](http://en.wikipedia.org/wiki/Mastermind_(board_game)
+- [Wikipedia description on the game](http://en.wikipedia.org/wiki/Mastermind_(board_game))
 - [Console color implementation](https://stackoverflow.com/questions/1489183/colorized-ruby-output)
 - [Mastermind Game on the Browser](http://www.webgamesonline.com/mastermind/index.php)
 - [Mastermind strategy #1](https://www.youtube.com/watch?v=XX5TlB6xT3M)
