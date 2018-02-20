@@ -2,8 +2,7 @@ class Board
 
   def initialize(code)
     @code = code
-    @attempts = []
-    @state = { colors: 0, positions: 0 }
+    reset
   end
 
   # display the board
@@ -16,7 +15,7 @@ class Board
   +---+---+---+---+---+---+
 }
     @attempts.reverse.each_with_index do |attempt, index|
-      puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{@attempts.length - index} [ colors : #{@state[:colors]}, positions : #{@state[:positions]} ]"
+      puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{@attempts.length - index} [ colors : #{@state[:colors]}, positions : #{@states[@attempts.length - index - 1][:positions]} ]"
       puts '  +---+---+---+---+---+---+'
     end
   end
@@ -34,12 +33,21 @@ class Board
     end
   end
 
-  def game_over
-    code_broken || max_attempts
+  def update_state(guess)
+    add_attempt(guess)
+    similar_colors = (@code.split('') & guess.split('')).length
+
+    @state[:colors] = similar_colors
+
+    # hamming logic
+    # strandA.split('').each_with_index do |val, idx|
+    #   distance += 1 if val != strandB[idx]
+    # end
+    add_state(@state)
   end
 
-  def add_attempt(attempt)
-    @attempts << attempt
+  def game_over
+    code_broken || max_attempts
   end
 
   def max_attempts
@@ -50,8 +58,19 @@ class Board
     @state[:colors] == @state[:positions] && @state[:colors] == 6
   end
 
+  def add_attempt(attempt)
+    @attempts << attempt
+  end
+
+  def add_state(state)
+    @states << state
+  end
+
   # reset the board
   def reset
+    @attempts = []
+    @states = []
+    @state = { colors: 0, positions: 0 }
   end
 
 end

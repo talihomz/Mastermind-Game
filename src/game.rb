@@ -59,7 +59,7 @@ class Game
 
     # todo generate random code
     @player = Player.new
-    @board = Board.new('QWERET')
+    @board = Board.new('RCPWOG')
 
     # infinite playing loop
     until @board.game_over
@@ -81,7 +81,7 @@ class Game
 
     begin
       guess = @player.make_guess
-      @board.add_attempt(guess)
+      @board.update_state(guess)
     rescue ArgumentError => e
       puts "Hey! #{e.message}"
       retry
