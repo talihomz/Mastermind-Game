@@ -65,6 +65,14 @@ class Game
     until @board.game_over
       play_round
     end
+    @board.display
+
+    # display the results of the game
+    if @board.code_broken
+      Screen.show_win
+    else
+      Screen.show_lost
+    end
   end
 
   # play a round
@@ -145,10 +153,12 @@ Code( e.g. `R G B W C P`):
 
     # show winning screen
     def self.show_win
+      puts 'WON!'
     end
 
     # show game over screen
-    def self.show_game_over
+    def self.show_lost
+      puts 'LOST!'
     end
 
     # show goodbye message to the user

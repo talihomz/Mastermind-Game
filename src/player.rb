@@ -8,11 +8,11 @@ class Player
 
   # try to guess the secret code
   def make_guess
-    print "Take a guess (e.g. `R G B W C P`): "
+    print "\nTake a guess (e.g. `R G B W C P`): "
     input = gets.chomp
     input = input.gsub(/[\s|,]/,'').upcase
 
-    if(input.match(/^[RGBWCPO]+$/) == nil)
+    if(input.match(/^[RGBYWCPO]+$/) == nil)
       raise ArgumentError.new("The colors specified are not valid!")
     end
 
