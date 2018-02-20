@@ -1,6 +1,7 @@
-require_relative "game"
+require_relative "src/game"
+require_relative "src/string_extensions"
 
 # initialize the game
-# show how screen
 game = Game.new
+# show home screen
 game.show_home_screen
