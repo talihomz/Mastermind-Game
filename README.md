@@ -26,6 +26,8 @@ After that, a board is shown, with the current state of the game and a prompt to
 
 ![Board](./screenshots/board.png)
 
+
+
 ## AI Mode
 
 AI mode allows a player to set a code, and challenge the computer to break it.

@@ -1,11 +1,11 @@
 require_relative 'board'
+require_relative 'player'
 
 class Game
 
   def initialize
     @action = 0
     @last_action = @action
-    @board = Board.new
   end
 
   public
@@ -57,7 +57,27 @@ class Game
   def start_as_guesser
     Screen.show_guesser_instructions
 
+    # todo generate random code
+    @player = Player.new
+    @board = Board.new('QWERET')
+
+    # infinite playing loop
+    until @board.game_over
+      play_round
+    end
+  end
+
+  # play a round
+  def play_round
     @board.display
+
+    begin
+      guess = @player.make_guess
+      @board.add_attempt(guess)
+    rescue ArgumentError => e
+      puts "Hey! #{e.message}"
+      retry
+    end
   end
 
   # start the game mode 2

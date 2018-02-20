@@ -1,17 +1,9 @@
 class Board
 
-  @code = ''
-  @attempts = []
-  @state = { colors: 0, position: 0 }
-
-  # setter method for code
-  def code=(code)
+  def initialize(code)
     @code = code
-  end
-
-  # getter method for code
-  def code
-    @code
+    @attempts = []
+    @state = { colors: 0, positions: 0 }
   end
 
   # display the board
@@ -22,38 +14,30 @@ class Board
   +---+---+---+---+---+---+
 
   +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  12    [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  11    [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  10    [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  9     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  8     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  7     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  6     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  5     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  4     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  3     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  2     [ colors : 0, positions : 0 ]
-  +---+---+---+---+---+---+
-  |   |   |   |   |   |   |  1     [ colors : 0, positions : 0 ]
+  |   |   |   |   |   |   |  1     [ colors : #{@state[:colors]}, positions : #{@state[:positions]} ]
   +---+---+---+---+---+---+
     }
+  end
+
+  def game_over
+    max_attempts || code_broken
+  end
+
+  def add_attempt(attempt)
+    @attempts << attempt
+  end
+
+  private
+  def max_attempts
+    @attempts.length == 12
+  end
+
+  def code_broken
+    @state[:colors] == @state[:positions] && @state[:colors] == 6
   end
 
   # reset the board
   def reset
   end
-
-  # define private methods
-  private :reset
 
 end

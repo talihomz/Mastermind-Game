@@ -74,3 +74,8 @@ GAME SCREEN (OPTION #2)
 
  Enter your unbreakable code:
  Code( e.g. `R G B W C P`):
+
+PLAY SCREEN
+=================================================================
+
+  Guess the code (e.g. `R G B W C P`):
