@@ -4,6 +4,34 @@ TODOS
 6. Beautify!! (Add images to console)
 7. Publish to consolegames.
 
+## Strategy
+1. Pick a single color, try it as a Guess
+2. Look at colors state result
+3. If colors == 0, change color pick and repeat from 1
+4. Else put color as guess[0], and generate guess[1..5] another color
+5. If position == 2
+  - keep first color at position[0]
+  - keep second color at position[1]
+6. If position == 1
+  - swap guess[0] with guess[1]
+
+Stage    State      Action
+0        c:0, p:0,  no colors
+1        c:1, p:1,  1 color  entered
+2        c:1, p:0,  2 colors entered
+3        c:2, p:1,  1 new color entered, swaped first color
+4        c: , p: ,
+5        c: , p: ,
+6        c: , p: ,
+7        c: , p: ,
+8        c: , p: ,
+9        c: , p: ,
+10       c: , p: ,
+11       c: , p: ,
+12       c: , p: ,
+
+Get a strategy from Youtube
+Implement in for our AI
 
 BOARD
 =================================================================

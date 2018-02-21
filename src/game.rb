@@ -75,6 +75,28 @@ class Game
     end
   end
 
+  # start the game mode 2
+  def start_as_coder
+    Screen.show_coder_instructions
+
+    # todo generate random code
+    @player = Player.new("AI")
+    @board = Board.new(@player.generate_code)
+
+    # infinite playing loop
+    until @board.game_over
+      play_round
+    end
+    @board.display
+
+    # display the results of the game
+    if @board.code_broken
+      Screen.show_win
+    else
+      Screen.show_lost
+    end
+  end
+
   # play a round
   def play_round
     @board.display
@@ -86,11 +108,6 @@ class Game
       puts "Hey! #{e.message}"
       retry
     end
-  end
-
-  # start the game mode 2
-  def start_as_coder
-    Screen.show_coder_instructions
   end
 
   # exit the game
@@ -147,8 +164,7 @@ These are the available colors:
     def self.show_coder_instructions
       puts %{
 Enter your unbreakable code:
-Code( e.g. `R G B W C P`):
-      }
+Code( e.g. `R G B W C P`): }
     end
 
     # show winning screen
