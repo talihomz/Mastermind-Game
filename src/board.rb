@@ -14,11 +14,20 @@ class Board
 
   # display the board
   def display
-    print %{
+    final_row = %{
   +---+---+---+---+---+---+
-  | X | X | X | X | X | X |  CODE
+  | X | X | X | X | X | X |  SECRET CODE
   +---+---+---+---+---+---+
 }
+
+    final_game_over_row = %{
+  +---+---+---+---+---+---+
+  | #{d(@code[0])} | #{d(@code[1])} | #{d(@code[2])} | #{d(@code[3])} | #{d(@code[4])} | #{d(@code[5])} |  SECRET CODE
+  +---+---+---+---+---+---+
+}
+
+    print game_over ? final_game_over_row : final_row
+    
     @attempts.reverse.each_with_index do |attempt_struct, index|
       attempt = attempt_struct[:attempt]
       state = attempt_struct[:state]

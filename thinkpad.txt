@@ -1,8 +1,5 @@
 TODOS
-1. Show code when user wins
-2. Fix input validation on main menu
-3. Format win and loss messages better
-4. Random code generator
+
 5. Code the AI
 6. Beautify!! (Add images to console)
 7. Publish to consolegames.

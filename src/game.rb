@@ -4,8 +4,7 @@ require_relative 'player'
 class Game
 
   def initialize
-    @action = 0
-    @last_action = @action
+    @last_action = 0
   end
 
   public
@@ -19,9 +18,10 @@ class Game
   #starts the game loop
   def start_game_loop
     until @last_action == 3
+      @last_action = 0
       get_user_action
 
-      case @action
+      case @last_action
         when 1 then start_as_guesser
         when 2 then start_as_coder
         when 3 then exit
@@ -37,7 +37,7 @@ class Game
     end
 
     # todo add validation later
-    @last_action = @action = action.to_i
+    @last_action = action.to_i
   end
 
   # take the input from the user
@@ -59,7 +59,7 @@ class Game
 
     # todo generate random code
     @player = Player.new
-    @board = Board.new('RCPWOG')
+    @board = Board.new(@player.generate_code)
 
     # infinite playing loop
     until @board.game_over
@@ -153,18 +153,22 @@ Code( e.g. `R G B W C P`):
 
     # show winning screen
     def self.show_win
-      puts 'WON!'
+      puts %{
+  Congratulations! You managed to break the secret code.
+      }
     end
 
     # show game over screen
     def self.show_lost
-      puts 'LOST!'
+      puts %{
+  You Lost! We told you you can't guess it.
+      }
     end
 
     # show goodbye message to the user
     def self.show_goodbye
       puts %{
-You ran away. We won't judge you, but come back for another challenge later.
+  You ran away. We won't judge you, but come back for another challenge later.
       }
     end
 
