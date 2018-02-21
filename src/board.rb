@@ -1,8 +1,15 @@
 class Board
 
+  Attempt = Struct.new(:attempt, :state)
+
   def initialize(code)
     @code = code
     reset
+  end
+
+  # reset the board
+  def reset
+    @attempts = []
   end
 
   # display the board
@@ -11,11 +18,14 @@ class Board
   +---+---+---+---+---+---+
   | X | X | X | X | X | X |  CODE
   +---+---+---+---+---+---+
-
-  +---+---+---+---+---+---+
 }
-    @attempts.reverse.each_with_index do |attempt, index|
-      puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{@attempts.length - index} [ colors : #{@state[:colors]}, positions : #{@states[@attempts.length - index - 1][:positions]} ]"
+    @attempts.reverse.each_with_index do |attempt_struct, index|
+      attempt = attempt_struct[:attempt]
+      state = attempt_struct[:state]
+      display_index = @attempts.length - index
+
+      puts "  +---+---+---+---+---+---+" if index == 0
+      puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{display_index} [ colors : #{state[:colors]}, positions : #{state[:positions]} ]"
       puts '  +---+---+---+---+---+---+'
     end
   end
@@ -34,16 +44,21 @@ class Board
   end
 
   def update_state(guess)
-    add_attempt(guess)
     similar_colors = (@code.split('') & guess.split('')).length
 
-    @state[:colors] = similar_colors
-
     # hamming logic
-    # strandA.split('').each_with_index do |val, idx|
-    #   distance += 1 if val != strandB[idx]
-    # end
-    add_state(@state)
+    non_matches = 0
+    @code.split('').each_with_index do |val, idx|
+      non_matches += 1 if val != guess[idx]
+    end
+
+    state = {
+      colors: similar_colors,
+      positions: 6 - non_matches
+    }
+
+    new_attempt = Attempt.new(guess, state)
+    add_attempt(new_attempt)
   end
 
   def game_over
@@ -55,22 +70,13 @@ class Board
   end
 
   def code_broken
-    @state[:colors] == @state[:positions] && @state[:colors] == 6
+    return false if @attempts.length == 0
+    current_idx = @attempts.length - 1
+    state = @attempts[current_idx][:state]
+    state[:colors] == state[:positions] && state[:colors] == 6
   end
 
   def add_attempt(attempt)
     @attempts << attempt
   end
-
-  def add_state(state)
-    @states << state
-  end
-
-  # reset the board
-  def reset
-    @attempts = []
-    @states = []
-    @state = { colors: 0, positions: 0 }
-  end
-
 end
