@@ -1,5 +1,6 @@
 require_relative 'board'
 require_relative 'player'
+require_relative 'AI'
 
 class Game
 
@@ -80,7 +81,7 @@ class Game
     Screen.show_coder_instructions
 
     # todo generate random code
-    @player = Player.new("AI")
+    @player = AI.new
     @board = Board.new(@player.generate_code)
 
     # infinite playing loop
@@ -164,7 +165,7 @@ These are the available colors:
     def self.show_coder_instructions
       puts %{
 Enter your unbreakable code:
-Code( e.g. `R G B W C P`): }
+Code( e.g. `R G B W`): }
     end
 
     # show winning screen

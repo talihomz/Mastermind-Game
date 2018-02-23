@@ -4,40 +4,25 @@ class Player
 
   def initialize(type="Human")
     @type = type
+    @possible_colors = ['R', 'G', 'B', 'O', 'W', 'Y', 'P', 'C']
   end
 
   # generate the secret code
   def generate_code
-    if @type == "Human"
-      get_random_code
-    else
-      begin
-        input = get_clean_input
-
-        return input if valid_code? input
-      rescue ArgumentError => e
-        puts "Hey! #{e.message}"
-        retry
-      end
-    end
+    get_random_code
   end
 
   # try to guess the secret code
   def make_guess
-    if @type == "Human"
-      print "\nTake a guess (e.g. `R G B W C P`): "
-      input = get_clean_input
+    print "\nTake a guess (e.g. `R G B W`): "
+    input = get_clean_input
 
-      return input if valid_code? input
-    else
-      sleep(0.5)
-      return get_random_code
-    end
+    return input if valid_code? input
   end
 
   def get_random_code
-    possible_colors = ['R', 'G', 'B', 'O', 'W', 'Y', 'P', 'C']
-    2.times do possible_colors.delete_at(rand(possible_colors.length)) end
+    possible_colors = Array.new @possible_colors
+    4.times do possible_colors.delete_at(rand(possible_colors.length)) end
     code = possible_colors.shuffle.join('')
     return code
   end
@@ -52,8 +37,8 @@ class Player
       raise ArgumentError.new("The colors specified are not valid!")
     end
 
-    if(input.length != 6)
-      raise ArgumentError.new("You need to specify 6 colors")
+    if(input.length != 4)
+      raise ArgumentError.new("You need to specify 4 colors")
     end
 
     if @type == "AI"
