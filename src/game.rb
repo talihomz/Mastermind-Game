@@ -103,6 +103,9 @@ class Game
     @board.display
 
     begin
+      # tell the AI of the last state
+      @player.set_last_state @board.get_last_state
+      
       guess = @player.make_guess
       @board.update_state(guess)
     rescue ArgumentError => e

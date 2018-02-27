@@ -1,6 +1,9 @@
+require 'pp'
+
 class Board
 
   Attempt = Struct.new(:attempt, :state)
+  POSSIBLE_COLORS = ['R', 'G', 'B', 'O', 'W', 'Y', 'P', 'C']
 
   def initialize(code)
     @code = code
@@ -75,7 +78,15 @@ class Board
   end
 
   def max_attempts
-    @attempts.length == 30
+    @attempts.length == 8
+  end
+
+  def get_last_state
+    if(@attempts.length == 0)
+      { colors: 0, positions: 0 }
+    else
+      @attempts.last[:state]
+    end
   end
 
   def code_broken
