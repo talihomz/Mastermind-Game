@@ -13,6 +13,7 @@ class AIBrain
       @@lookup[color] = [1,2,3,4]
     end
 
+    @@keys_tried = []
     @@feedback = { colors: 0, positions:0 }
     @@lucky_key = @@lookup.keys.shuffle.first
   end
@@ -24,7 +25,7 @@ class AIBrain
     change = state[:colors] <=> @@feedback[:colors]
     if(change > 0)
       # we found a new color
-
+      @@lucky_key = get_guessable_key
 
     elsif(change == 0)
       # we dint discover any new color
@@ -34,26 +35,22 @@ class AIBrain
       # we removed a color that exists in the code
       puts "Found an anomaly"
     end
-
-
-    pp @@lookup
   end
 
   def self.generate_guess
-    get_guess_on_key(@@lucky_key).join('')
-  end
+    # we need to join our guesses so far with our new guess
+    repeat_length = @@keys_tried.length => 4 ? 0 : 4 - @@keys_tried.length
 
-  private
-
-  def self.lookup_is_pristine?
-    @@lookup.all? do |k,v| v.length == 4 end
+    (@@keys_tried + Array.new(repeat_length) { @@lucky_key }).join('')
   end
 
   def self.get_guessable_key
-    (@@lookup.select do |k,v| v.length > 0 end).keys.shuffle.first
-  end
-
-  def self.get_guess_on_key key
-    Array.new(@@lookup[key].length) { key }
+    if @@keys_tried.length == 4
+      return 'rrrr'
+    else
+      res = ((@@lookup.select do |k,v| v.length > 0 end).keys - @@keys_tried).shuffle.first
+      @@keys_tried.push(res)
+      res
+    end
   end
 end
