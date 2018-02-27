@@ -1,8 +1,13 @@
 require_relative "player"
+require_relative "ai_brain"
 
 class AI < Player
+
+  Guess = Struct.new(:color, :positions)
+
   def initialize
     super "AI"
+    AIBrain.reset
   end
 
   def generate_code
@@ -16,12 +21,13 @@ class AI < Player
     end
   end
 
-  def make_guess
-    sleep(0.2)
-    get_fill_color
+  def set_last_state state
+    AIBrain.set_feedback state
   end
 
-  def get_fill_color
-    "rrrrrr"
+  def make_guess
+    sleep(0.05)
+
+    AIBrain.generate_guess
   end
 end

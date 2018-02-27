@@ -14,7 +14,7 @@ class Player
 
   # try to guess the secret code
   def make_guess
-    print "\nTake a guess (e.g. `R G B W`): "
+    print "\nTake a guess (colors: 'R' 'G' 'B' 'O' 'W' 'Y' 'P' 'C'): "
     input = get_clean_input
 
     return input if valid_code? input

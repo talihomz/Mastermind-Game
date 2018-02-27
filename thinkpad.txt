@@ -1,159 +1,34 @@
-TODOS
+Feedback
 
-5. Code the AI
-6. Beautify!! (Add images to console)
-7. Publish to consolegames.
+turn colors  positions  difference
+0     0         0           0
+- havent played
 
-## Strategy
-1. Pick a single color, try it as a Guess
-2. Look at colors state result
-3. If colors == 0, change color pick and repeat from 1
-4. Else put color as guess[0], and generate guess[1..5] another color
-5. If position == 2
-  - keep first color at position[0]
-  - keep second color at position[1]
-6. If position == 1
-  - swap guess[0] with guess[1]
+1     1         1
+- use color1 in first pos, add random color2 to remaining positions
 
-Stage    State      Action
-0        c:0, p:0,  no colors
-1        c:1, p:1,  1 color  entered
-2        c:1, p:0,  2 colors entered
-3        c:2, p:1,  1 new color entered, swaped first color
-4        c: , p: ,
-5        c: , p: ,
-6        c: , p: ,
-7        c: , p: ,
-8        c: , p: ,
-9        c: , p: ,
-10       c: , p: ,
-11       c: , p: ,
-12       c: , p: ,
+2     1         0
+- there is none of the color2
+- swap color1 space
+- fill the rest with new color3
 
-Get a strategy from Youtube
-Implement in for our AI
+3     1         0
+- there is none of color3
+- swap color1 to right again
+- fill in the rest with color4
 
-BOARD
-=================================================================
+4     2         2
+- color1 is in correct position
+- color4 has a correct unknown position
+- color4 in pos1, test color5
 
-+---+---+---+---+---+---+
-| X | X | X | X | X | X |  CODE
-+---+---+---+---+---+---+
+5     3         1
+- color5 is in selection
+- color4, color5 are in incorrect positions
+- swap color4 & color5
+- add color6
 
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  12    [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  11    [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  10    [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  9     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  8     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  7     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  6     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  5     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  4     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  3     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  2     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-|   |   |   |   |   |   |  1     [ colors : 0, positions : 0 ]
-+---+---+---+---+---+---+
-
- What is the code?
-
- Guess #1 (e.g `R G B W C P`):
-
-HOME SCREEN
-=================================================================
-
-===========================================
-   MASTERMIND : By Sava & Kevin
-===========================================
-Welcome to Mastermind!
-You shall not pass on the first try 😈
-
-1. Break the code
-2. Create the unbreakable code
-3. Take the red pill (Quit)
-
-So, what will it be?
-(Enter an option 1,2 or 3):
-
-
-GAME SCREEN (OPTION #1)
-=================================================================
-
-Instructions
-
-These are the available colors:
-
-R - red
-G - green
-B - blue
-O - orange
-W - white
-Y - yellow
-P - pink
-C - cyan
-
-GAME SCREEN (OPTION #2)
-=================================================================
-
- Enter your unbreakable code:
- Code( e.g. `R G B W C P`):
-
-
-GAME CLASSES
-=================================================================
-
-GAME
----------------------
-Instance variables:
-- last_action (so that we can know where to go next)
-- action (actions entered by user on menu)
-
-Methods:
-- show_home_screen
-
-- show_game_intro
-
-- show_home_menu (the tree options at beginning of game)
-
-- start_as_guesser
-
-- start_as_coder
-
-- show_win
-
-- show_game_over
-
-- exit
-
-
-PLAYER
----------------------
-Instance variables:
-- name
-
-Methods:
-- generate_code
-- take_input
-
-
-BOARD
----------------------
-Instance Variables:
-- attempts[]
-- state { colors, position }
-
-Methods:
-- set_code
-- display
-- reset
+6     3         2
+- color5 is in correct position
+- color6 isn't in the collection
+-
