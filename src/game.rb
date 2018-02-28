@@ -1,6 +1,7 @@
 require_relative 'board'
 require_relative 'player'
-require_relative 'AI'
+require_relative 'ai'
+require 'pp'
 
 class Game
 
@@ -105,11 +106,12 @@ class Game
     begin
       # tell the AI of the last state
       @player.set_last_state @board.get_last_state
-      
+
       guess = @player.make_guess
       @board.update_state(guess)
     rescue ArgumentError => e
-      puts "Hey! #{e.message}"
+      # puts "Hey! #{e.message}"
+      pp e
       retry
     end
   end
