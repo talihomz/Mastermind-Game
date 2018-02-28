@@ -1,5 +1,5 @@
 require_relative "player"
-require_relative "ai_brain"
+require_relative "ai_knuth_brain"
 
 class AI < Player
 

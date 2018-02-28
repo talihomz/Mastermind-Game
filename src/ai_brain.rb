@@ -35,7 +35,6 @@ class AIBrain
       puts "Found an anomaly"
     end
 
-
     pp @@lookup
   end
 
