@@ -11,9 +11,8 @@ class AIBrain
     @@possible_codes = (111111..888888).to_a
 
     @@possible_codes.select! do |n|
-      n.to_s.split('').all? { |d| d != "0" }
+      n.to_s.split('').all? { |d| d != "0" and d != "9" }
     end
-    puts "#{get_defects} <- DEFECTS"
 
     @@guess = nil
   end
@@ -44,16 +43,19 @@ class AIBrain
   private
   # convert guess from numbers like 1111 to strings like 'RRRR'
   def self.guess_translator guess
-    (guess.to_s.split('').collect do |num_str|
+    #puts "==========\nINPUT #{guess}"
+    res = (guess.to_s.split('').collect do |num_str|
       index = num_str.to_i - 1
       Board::POSSIBLE_COLORS[index]
     end).join('')
+    #puts "==========\nOUTPUT #{res}"
+    return res
   end
 
   def self.eliminate_codes
     # filter the array of possible codes and remove all that don't give the same result
     @@possible_codes.select! do |c|
-       process_number(c) == @@feedback # 1123
+       process_number(c) == @@feedback
     end
   end
 
