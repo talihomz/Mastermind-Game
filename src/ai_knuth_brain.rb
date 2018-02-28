@@ -15,17 +15,23 @@ class AIBrain
   def self.set_feedback state
     @@feedback = state
 
-    eliminate_codes
+    eliminate_codes if @@guess
   end
 
   def self.generate_guess
     if @@guess
-      @@possible_codes.shuffle.first
+      @@guess = guess_translator(@@possible_codes.shuffle.first)
     else
       @@guess = guess_translator(1122)
     end
-    puts 'GUESSSS: ' + @@guess
+
+    puts get_defects
+
     @@guess
+  end
+
+  def self.get_defects
+    @@possible_codes.count do |n| n.to_s.length < 4 end
   end
 
   private
@@ -48,9 +54,6 @@ class AIBrain
     code = @@guess
     guess = guess_translator n
 
-    # colors
-    puts "CODE: #{code}"
-    puts "GUESS: #{guess}"
     similar_colors = (code.split('') & guess.split('')).length
     # positions
     non_matches = 0
