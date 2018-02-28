@@ -7,8 +7,21 @@ class AIBrain
   @@guess = nil
 
   def self.reset
-    @@possible_codes = (1111..8888).to_a
+    # generate all codes from 111111 to 888888 that don't contain a digit 0
+    @@possible_codes = (111111..888888).to_a
+
+    @@possible_codes.select! do |n|
+      n.to_s.split('').all? { |d| d != "0" }
+    end
+    puts "#{get_defects} <- DEFECTS"
+
     @@guess = nil
+  end
+
+  def self.get_defects
+   @@possible_codes.count do |n|
+     n.to_s.length < 4 and n.to_s.split('').any? { |d| d == "0" }
+   end
   end
 
   # receive feedback about our latest move
@@ -22,16 +35,10 @@ class AIBrain
     if @@guess
       @@guess = guess_translator(@@possible_codes.shuffle.first)
     else
-      @@guess = guess_translator(1122)
+      @@guess = guess_translator(111222)
     end
 
-    puts get_defects
-
     @@guess
-  end
-
-  def self.get_defects
-    @@possible_codes.count do |n| n.to_s.length < 4 end
   end
 
   private
@@ -63,7 +70,7 @@ class AIBrain
 
     return {
       colors: similar_colors,
-      positions: 4 - non_matches
+      positions: 6 - non_matches
     }
   end
 end

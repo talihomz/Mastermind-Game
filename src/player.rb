@@ -22,7 +22,7 @@ class Player
 
   def get_random_code
     possible_colors = Array.new @possible_colors
-    4.times do possible_colors.delete_at(rand(possible_colors.length)) end
+    6.times do possible_colors.delete_at(rand(possible_colors.length)) end
     code = possible_colors.shuffle.join('')
     return code
   end
@@ -37,8 +37,8 @@ class Player
       raise ArgumentError.new("The colors specified are not valid!")
     end
 
-    if(input.length != 4)
-      raise ArgumentError.new("You need to specify 4 colors")
+    if(input.length != 6)
+      raise ArgumentError.new("You need to specify 6 colors")
     end
 
     if @type == "AI"

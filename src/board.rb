@@ -4,6 +4,7 @@ class Board
 
   Attempt = Struct.new(:attempt, :state)
   POSSIBLE_COLORS = ['R', 'G', 'B', 'O', 'W', 'Y', 'P', 'C']
+  FIELDS = 6
 
   def initialize(code)
     @code = code
@@ -18,15 +19,15 @@ class Board
   # display the board
   def display
     final_row = %{
-  +---+---+---+---+
-  | X | X | X | X |  SECRET CODE
-  +---+---+---+---+
+  +---+---+---+---+---+---+
+  | X | X | X | X | X | X |    SECRET CODE
+  +---+---+---+---+---+---+
 }
 
     final_game_over_row = %{
-  +---+---+---+---+
-  | #{d(@code[0])} | #{d(@code[1])} | #{d(@code[2])} | #{d(@code[3])} |  SECRET CODE
-  +---+---+---+---+
+  +---+---+---+---+---+---+
+  | #{d(@code[0])} | #{d(@code[1])} | #{d(@code[2])} | #{d(@code[3])} | #{d(@code[4])} | #{d(@code[5])} | SECRET CODE
+  +---+---+---+---+---+---+
 }
 
     print game_over ? final_game_over_row : final_row
@@ -36,10 +37,12 @@ class Board
       state = attempt_struct[:state]
       display_index = @attempts.length - index
 
-      puts "  +---+---+---+---+" if index == 0
-      puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} |  #{display_index} [ colors : #{state[:colors]}, positions : #{state[:positions]} ]"
-      puts '  +---+---+---+---+'
+      puts "  +---+---+---+---+---+---+" if index == 0
+      puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{display_index} [ colors : #{state[:colors]}, positions : #{state[:positions]} ]"
+      puts '  +---+---+---+---+---+---+'
     end
+
+    pp @attempts # debug
   end
 
   def d(letter)
@@ -54,15 +57,14 @@ class Board
         when 'p' then 'O'.pink
         when 'c' then 'O'.cyan
       end
-    rescue
-      puts "Could not render '#{letter}'"
+    rescue StandardError => e
+      puts e.message
     end
   end
 
   def update_state(guess)
     similar_colors = (@code.split('') & guess.split('')).length
 
-    # hamming logic
     non_matches = 0
     @code.split('').each_with_index do |val, idx|
       non_matches += 1 if val != guess[idx]
@@ -70,7 +72,7 @@ class Board
 
     state = {
       colors: similar_colors,
-      positions: 4 - non_matches
+      positions: FIELDS - non_matches
     }
 
     new_attempt = Attempt.new(guess, state)
@@ -82,7 +84,7 @@ class Board
   end
 
   def max_attempts
-    @attempts.length == 8
+    @attempts.length == 12
   end
 
   def get_last_state
@@ -97,7 +99,7 @@ class Board
     return false if @attempts.length == 0
     current_idx = @attempts.length - 1
     state = @attempts[current_idx][:state]
-    state[:colors] == state[:positions] && state[:colors] == 4
+    state[:colors] == state[:positions] && state[:colors] == FIELDS
   end
 
   def add_attempt(attempt)

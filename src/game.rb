@@ -170,7 +170,7 @@ These are the available colors:
     def self.show_coder_instructions
       puts %{
 Enter your unbreakable code:
-Code( e.g. `R G B W`): }
+Code( e.g. `R G B W Y P`): }
     end
 
     # show winning screen
