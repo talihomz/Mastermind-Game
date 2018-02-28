@@ -43,15 +43,19 @@ class Board
   end
 
   def d(letter)
-    case letter.downcase
-      when 'r' then 'O'.red
-      when 'g' then 'O'.green
-      when 'b' then 'O'.blue
-      when 'o' then 'O'.orange
-      when 'w' then 'O'.white
-      when 'y' then 'O'.yellow
-      when 'p' then 'O'.pink
-      when 'c' then 'O'.cyan
+    begin
+      case letter.downcase
+        when 'r' then 'O'.red
+        when 'g' then 'O'.green
+        when 'b' then 'O'.blue
+        when 'o' then 'O'.orange
+        when 'w' then 'O'.white
+        when 'y' then 'O'.yellow
+        when 'p' then 'O'.pink
+        when 'c' then 'O'.cyan
+      end
+    rescue
+      puts "Could not render '#{letter}'"
     end
   end
 
