@@ -1,20 +1,36 @@
 REFACTORING
 ------------------
-- Rename index.rb to mastermind
+
+a. Restructure
+- create bin and lib folders
+- add installer file
+- add messages file
+
+b. Index.rb
+- rename index.rb to mastermind
 - Move all co-ordination logic to mastermind
 - Add shebang to mastermind
-- Add installer file
-- create bin and lib folders
-- add messages file
-- move Screen code to messages
+
+c. Messages.rb
+- move Screen from Game code to Messages
+
+d. Documentation
 - update README.md (new screenshots, add algo link)
+
+e. Game.rb
 - remove non-game logic from Game.rb
+
+f. Board.rb
 - decide on where attempts should sit (game or board)
 - change Board.display to to_s
-- decide on update_state location and name in Board.rb
-- check method and attribute naming in Board.rb
+- decide on update_state location and name
+- check method and attribute naming
+
+g. AI.rb
 - Insert the brain into the shell :) (merge the brain with an AI)
-- Remove possible colors from Player.rb
-- Move puts and prints (console i/o) to Messages.rb - Player.rb
-- Move code generation in Player mode from Player.rb to Game.rb
-- Move code validation to game - Player.rb
+
+h. Player.rb
+- Remove possible colors
+- Move puts and prints (console i/o) to Messages.rb
+- Move code generation in Player mode to Game.rb
+- Move code validation to Game.rb?

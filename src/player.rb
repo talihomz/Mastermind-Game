@@ -20,9 +20,13 @@ class Player
     return input if valid_code? input
   end
 
+  def is_ai?
+    @type == 'AI'
+  end
+
   def get_random_code
     possible_colors = Array.new @possible_colors
-    6.times do possible_colors.delete_at(rand(possible_colors.length)) end
+    2.times do possible_colors.delete_at(rand(possible_colors.length)) end
     code = possible_colors.shuffle.join('')
     return code
   end

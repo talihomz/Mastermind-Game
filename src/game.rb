@@ -104,7 +104,7 @@ class Game
 
     begin
       # tell the AI of the last state
-      @player.set_last_state @board.get_last_state
+      @player.set_last_state @board.get_last_state if @player.is_ai?
 
       guess = @player.make_guess
       @board.update_state(guess)
