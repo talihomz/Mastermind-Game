@@ -10,7 +10,6 @@ class AIBrain
     # generate all codes from 111111 to 888888 that don't contain a digit 0
     @@possible_codes = (111111..888888).to_a
 
-    puts "Generating Codes"
     @@possible_codes.select! do |n|
       !n.to_s.match(/[09]/)
     end
