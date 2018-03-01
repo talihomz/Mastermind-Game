@@ -41,23 +41,19 @@ class Board
       puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{display_index} [ colors : #{state[:colors]}, positions : #{state[:positions]} ]"
       puts '  +---+---+---+---+---+---+'
     end
-    
+
   end
 
   def d(letter)
-    begin
-      case letter.downcase
-        when 'r' then 'O'.red
-        when 'g' then 'O'.green
-        when 'b' then 'O'.blue
-        when 'o' then 'O'.orange
-        when 'w' then 'O'.white
-        when 'y' then 'O'.yellow
-        when 'p' then 'O'.pink
-        when 'c' then 'O'.cyan
-      end
-    rescue StandardError => e
-      puts e.message
+    case letter.downcase
+      when 'r' then 'O'.red
+      when 'g' then 'O'.green
+      when 'b' then 'O'.blue
+      when 'o' then 'O'.orange
+      when 'w' then 'O'.white
+      when 'y' then 'O'.yellow
+      when 'p' then 'O'.pink
+      when 'c' then 'O'.cyan
     end
   end
 

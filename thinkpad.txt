@@ -1,34 +1,20 @@
-Feedback
-
-turn colors  positions  difference
-0     0         0           0
-- havent played
-
-1     1         1
-- use color1 in first pos, add random color2 to remaining positions
-
-2     1         0
-- there is none of the color2
-- swap color1 space
-- fill the rest with new color3
-
-3     1         0
-- there is none of color3
-- swap color1 to right again
-- fill in the rest with color4
-
-4     2         2
-- color1 is in correct position
-- color4 has a correct unknown position
-- color4 in pos1, test color5
-
-5     3         1
-- color5 is in selection
-- color4, color5 are in incorrect positions
-- swap color4 & color5
-- add color6
-
-6     3         2
-- color5 is in correct position
-- color6 isn't in the collection
--
+REFACTORING
+------------------
+- Rename index.rb to mastermind
+- Move all co-ordination logic to mastermind
+- Add shebang to mastermind
+- Add installer file
+- create bin and lib folders
+- add messages file
+- move Screen code to messages
+- update README.md (new screenshots, add algo link)
+- remove non-game logic from Game.rb
+- decide on where attempts should sit (game or board)
+- change Board.display to to_s
+- decide on update_state location and name in Board.rb
+- check method and attribute naming in Board.rb
+- Insert the brain into the shell :) (merge the brain with an AI)
+- Remove possible colors from Player.rb
+- Move puts and prints (console i/o) to Messages.rb - Player.rb
+- Move code generation in Player mode from Player.rb to Game.rb
+- Move code validation to game - Player.rb
