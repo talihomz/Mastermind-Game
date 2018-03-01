@@ -41,8 +41,7 @@ class Board
       puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{display_index} [ colors : #{state[:colors]}, positions : #{state[:positions]} ]"
       puts '  +---+---+---+---+---+---+'
     end
-
-    pp @attempts # debug
+    
   end
 
   def d(letter)

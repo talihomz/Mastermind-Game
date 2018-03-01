@@ -10,17 +10,12 @@ class AIBrain
     # generate all codes from 111111 to 888888 that don't contain a digit 0
     @@possible_codes = (111111..888888).to_a
 
+    puts "Generating Codes"
     @@possible_codes.select! do |n|
-      n.to_s.split('').all? { |d| d != "0" and d != "9" }
+      !n.to_s.match(/[09]/)
     end
 
     @@guess = nil
-  end
-
-  def self.get_defects
-   @@possible_codes.count do |n|
-     n.to_s.length < 4 and n.to_s.split('').any? { |d| d == "0" }
-   end
   end
 
   # receive feedback about our latest move
