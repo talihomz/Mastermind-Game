@@ -3,12 +3,10 @@ require_relative 'player'
 require_relative 'ai'
 
 class Game
-
   def initialize
     @last_action = 0
   end
 
-  public
   # displays home screen, only shown once at the beginning of the game
   def show_home_screen
     Screen.show_game_intro
@@ -16,16 +14,17 @@ class Game
   end
 
   private
-  #starts the game loop
+
+  # starts the game loop
   def start_game_loop
     until @last_action == 3
       @last_action = 0
       get_user_action
 
       case @last_action
-        when 1 then start_as_guesser
-        when 2 then start_as_coder
-        when 3 then exit
+      when 1 then start_as_guesser
+      when 2 then start_as_coder
+      when 3 then exit
       end
     end
   end
@@ -33,11 +32,11 @@ class Game
   # action local variable
   def action=(action)
     # add validation
-    if(![1,2,3].include?(action.to_i))
-      raise ArgumentError.new("Invalid input : '#{action}'")
+    unless [1, 2, 3].include?(action.to_i)
+      raise ArgumentError, "Invalid input : '#{action}'"
     end
 
-    # todo add validation later
+    # TODO: add validation later
     @last_action = action.to_i
   end
 
@@ -58,14 +57,12 @@ class Game
   def start_as_guesser
     Screen.show_guesser_instructions
 
-    # todo generate random code
+    # TODO: generate random code
     @player = Player.new
     @board = Board.new(@player.generate_code)
 
     # infinite playing loop
-    until @board.game_over
-      play_round
-    end
+    play_round until @board.game_over
     @board.display
 
     # display the results of the game
@@ -80,14 +77,12 @@ class Game
   def start_as_coder
     Screen.show_coder_instructions
 
-    # todo generate random code
+    # TODO: generate random code
     @player = AI.new
     @board = Board.new(@player.generate_code)
 
     # infinite playing loop
-    until @board.game_over
-      play_round
-    end
+    play_round until @board.game_over
     @board.display
 
     # display the results of the game
@@ -119,7 +114,7 @@ class Game
   def exit
     print 'Are you sure you want to quit? (y/n): '
     response = gets.chomp
-    if ['y', 'yes'].include?(response.downcase)
+    if %w[y yes].include?(response.downcase)
       Screen.show_goodbye
     else
       @last_action = 0
@@ -127,16 +122,15 @@ class Game
   end
 
   class Screen
-
     # show game intro menu
     def self.show_game_intro
-      puts %{
+      puts %(
 ===========================================
    MASTERMIND : By Sava & Kevin
 ===========================================
 Welcome to Mastermind!
 You shall not pass on the first try 😈
-      }
+      )
     end
 
     # displays menu options
@@ -145,16 +139,14 @@ You shall not pass on the first try 😈
   1. Break the code
   2. Create the unbreakable code
   3. Take the red pill (Quit)
-
 So, what will it be?
 (Enter an option 1,2 or 3): }
     end
 
     # show instructions
     def self.show_guesser_instructions
-      puts %{
+      puts %(
 These are the available colors:
-
   #{'R'.red} - red
   #{'G'.green} - green
   #{'B'.blue} - blue
@@ -163,7 +155,7 @@ These are the available colors:
   #{'Y'.yellow} - yellow
   #{'P'.pink} - pink
   #{'C'.cyan} - cyan
-      }
+      )
     end
 
     def self.show_coder_instructions
@@ -174,24 +166,23 @@ Code( e.g. `R G B W Y P`): }
 
     # show winning screen
     def self.show_win
-      puts %{
+      puts %(
   Congratulations! You managed to break the secret code.
-      }
+      )
     end
 
     # show game over screen
     def self.show_lost
-      puts %{
+      puts %(
   You Lost! We told you you can't guess it.
-      }
+      )
     end
 
     # show goodbye message to the user
     def self.show_goodbye
-      puts %{
+      puts %(
   You ran away. We won't judge you, but come back for another challenge later.
-      }
+      )
     end
-
   end
 end

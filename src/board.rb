@@ -1,9 +1,8 @@
 require 'pp'
 
 class Board
-
   Attempt = Struct.new(:attempt, :state)
-  POSSIBLE_COLORS = ['R', 'G', 'B', 'O', 'W', 'Y', 'P', 'C']
+  POSSIBLE_COLORS = %w[R G B O W Y P C].freeze
   FIELDS = 6
 
   def initialize(code)
@@ -18,17 +17,17 @@ class Board
 
   # display the board
   def display
-    final_row = %{
+    final_row = %(
   +---+---+---+---+---+---+
   | X | X | X | X | X | X |    SECRET CODE
   +---+---+---+---+---+---+
-}
+)
 
-    final_game_over_row = %{
+    final_game_over_row = %(
   +---+---+---+---+---+---+
   | #{d(@code[0])} | #{d(@code[1])} | #{d(@code[2])} | #{d(@code[3])} | #{d(@code[4])} | #{d(@code[5])} | SECRET CODE
   +---+---+---+---+---+---+
-}
+)
 
     print game_over ? final_game_over_row : final_row
 
@@ -37,23 +36,22 @@ class Board
       state = attempt_struct[:state]
       display_index = @attempts.length - index
 
-      puts "  +---+---+---+---+---+---+" if index == 0
+      puts '  +---+---+---+---+---+---+' if index == 0
       puts "  | #{d(attempt[0])} | #{d(attempt[1])} | #{d(attempt[2])} | #{d(attempt[3])} | #{d(attempt[4])} | #{d(attempt[5])} |  #{display_index} [ colors : #{state[:colors]}, positions : #{state[:positions]} ]"
       puts '  +---+---+---+---+---+---+'
     end
-
   end
 
   def d(letter)
     case letter.downcase
-      when 'r' then 'O'.red
-      when 'g' then 'O'.green
-      when 'b' then 'O'.blue
-      when 'o' then 'O'.orange
-      when 'w' then 'O'.white
-      when 'y' then 'O'.yellow
-      when 'p' then 'O'.pink
-      when 'c' then 'O'.cyan
+    when 'r' then 'O'.red
+    when 'g' then 'O'.green
+    when 'b' then 'O'.blue
+    when 'o' then 'O'.orange
+    when 'w' then 'O'.white
+    when 'y' then 'O'.yellow
+    when 'p' then 'O'.pink
+    when 'c' then 'O'.cyan
     end
   end
 
@@ -83,7 +81,7 @@ class Board
   end
 
   def get_last_state
-    if(@attempts.length == 0)
+    if @attempts.empty?
       { colors: 0, positions: 0 }
     else
       @attempts.last[:state]
@@ -91,7 +89,7 @@ class Board
   end
 
   def code_broken
-    return false if @attempts.length == 0
+    return false if @attempts.empty?
     current_idx = @attempts.length - 1
     state = @attempts[current_idx][:state]
     state[:colors] == state[:positions] && state[:colors] == FIELDS

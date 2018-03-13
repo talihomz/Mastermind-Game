@@ -1,10 +1,9 @@
 require 'set'
 
 class Player
-
-  def initialize(type="Human")
+  def initialize(type = 'Human')
     @type = type
-    @possible_colors = ['R', 'G', 'B', 'O', 'W', 'Y', 'P', 'C']
+    @possible_colors = %w[R G B O W Y P C]
   end
 
   # generate the secret code
@@ -26,31 +25,28 @@ class Player
 
   def get_random_code
     possible_colors = Array.new @possible_colors
-    2.times do possible_colors.delete_at(rand(possible_colors.length)) end
+    2.times { possible_colors.delete_at(rand(possible_colors.length)) }
     code = possible_colors.shuffle.join('')
-    return code
+    code
   end
 
   def get_clean_input
     input = gets.chomp
-    return input.gsub(/[\s|,]/,'').upcase
+    input.gsub(/[\s|,]/, '').upcase
   end
 
   def valid_code?(input)
-    if(input.match(/^[RGBYWCPO]+$/) == nil)
-      raise ArgumentError.new("The colors specified are not valid!")
+    if input.match(/^[RGBYWCPO]+$/).nil?
+      raise ArgumentError, 'The colors specified are not valid!'
     end
 
-    if(input.length != 6)
-      raise ArgumentError.new("You need to specify 6 colors")
-    end
+    raise ArgumentError, 'You need to specify 6 colors' if input.length != 6
 
-    if @type == "AI"
+    if @type == 'AI'
       set_is_good = input.split('').to_set.length == input.length
-      raise ArgumentError.new("The code cannot contain repeated colors") unless set_is_good
+      raise ArgumentError, 'The code cannot contain repeated colors' unless set_is_good
     end
 
     true
   end
-
 end

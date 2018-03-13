@@ -1,21 +1,15 @@
 require 'board'
 
 describe Board do
-  
-  describe "#initialize" do 
-    
+  describe '#initialize' do
   end
 
-  describe "#reset" do
-
+  describe '#reset' do
   end
 
-  describe "#update_guesses" do 
-
+  describe '#update_guesses' do
   end
 
-  describe "#get_guesses" do
-  
+  describe '#get_guesses' do
   end
-
 end
